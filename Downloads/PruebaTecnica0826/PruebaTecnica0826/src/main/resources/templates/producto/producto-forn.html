@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout">
+<head>
+    <title>Formulario de Producto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div layout:fragment="content">
+    <div class="container mt-5">
+        <h1 class="text-center mb-5" th:text="${producto.id == null} ? 'Nuevo Producto' : 'Editar Producto'"></h1>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form th:action="@{/producto}" th:object="${producto}" method="post">
+                            <input type="hidden" th:field="*{id}" />
+                            
+                            <div class="form-group">
+                                <label for="nombreD">Nombre del Producto:</label>
+                                <input id="nombreD" class="form-control" type="text" th:field="*{nombreD}" required />
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="precioD">Precio:</label>
+                                <input id="precioD" class="form-control" type="number" step="0.01" th:field="*{precioD}" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="existenciaD">Existencia:</label>
+                                <input id="existenciaD" class="form-control" type="number" th:field="*{existenciaD}" required />
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="categoria">Categoría:</label>
+                                <select id="categoria" class="form-control" th:field="*{categoriad.id}">
+                                    <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombreD}"></option>
+                                </select>
+                            </div>
+                            
+                            <button class="btn btn-primary btn-block" type="submit">Guardar</button>
+                        </form>
+                        <a class="btn btn-info btn-block mt-3" href="/producto">Volver a la lista</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+</body>
+</html>

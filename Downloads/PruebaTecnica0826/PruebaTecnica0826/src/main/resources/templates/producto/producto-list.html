@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout">
+<head>
+    <title>Producto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div layout:fragment="content">
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h1>Lista de Productos</h1>
+      <div>
+        <a class="btn btn-primary mx-2" th:href="@{/producto/nuevo}">Nuevo</a>
+        <a class="btn btn-secondary" href="/">Inicio</a>
+      </div>
+    </div>
+    
+    <table class="table table-striped table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Existencia</th>
+          <th scope="col">Categoría</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="producto : ${productos}">
+          <td th:text="${producto.id}"></td>
+          <td th:text="${producto.nombreD}"></td>
+          <td th:text="${producto.precioD}"></td>
+          <td th:text="${producto.existenciaD}"></td>
+          <td th:text="${producto.categoriad.nombreD}"></td>
+          <td>
+            <a class="btn btn-info btn-sm mt-1 mb-1" th:href="@{/producto/editar/{id}(id=${producto.id})}">Editar</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" th:href="@{/producto/eliminar/{id}(id=${producto.id})}">Eliminar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

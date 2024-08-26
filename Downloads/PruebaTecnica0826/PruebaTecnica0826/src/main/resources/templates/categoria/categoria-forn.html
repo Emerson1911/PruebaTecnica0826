@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="/layouts/_mainLayout"
+>
+  <head>
+    <title>Formulario de categoria</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <div class="container mt-5">
+        <h1
+          class="text-center mb-5"
+          th:text="${categoria.id == null} ? 'Nueva categoria' : 'Editar categoria'"
+        ></h1>
+
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <form
+                  th:action="@{/categoria}"
+                  th:object="${categoria}"
+                  method="post"
+                >
+                  <input type="hidden" th:field="*{id}" />
+
+                  <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input
+                      id="nombre"
+                      class="form-control"
+                      type="text"
+                      th:field="*{nombreD}"
+                    />
+                  </div>
+
+                  <button class="btn btn-primary btn-block" type="submit">
+                    Guardar
+                  </button>
+                </form>
+                <a class="btn btn-info btn-block mt-3" href="/categoria"
+                  >Volver a la lista</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
