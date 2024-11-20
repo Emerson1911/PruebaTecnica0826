@@ -1,0 +1,10 @@
+contraseñaÑsecret
+python -m venv venv
+
+venv\Scripts\activate
+
+pip install autopep8 uvicorn fastapi python-multipart "python-jose[cryptography]" "passlib[bcrypt]"
+
+pip freeze > requirements.txt
+
+uvicorn main:app --reload
